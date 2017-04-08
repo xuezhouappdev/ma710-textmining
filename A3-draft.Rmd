@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 # Table of Contents
 * 1.[Introduction](#Introduction)
-* 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
 * 3.[Load the dataset](#3)
 * 4.[Base investigation](#investi0)
@@ -206,7 +205,7 @@ view.cluster(1)
 
 
 
-# 5. Investigation -iteration 2<a id="investi1"></a>
+# 5 Investigation -iteration 2<a id="investi1"></a>
 
 [Describe the option you will change from your previous investigation and why you chose it.
  Modify the following table to indicate the parameter choices you made for this investigation.

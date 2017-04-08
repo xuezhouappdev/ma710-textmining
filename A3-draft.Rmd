@@ -5,11 +5,6 @@ date: "8 Apri 2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE,warning=FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
-
-```
-
 # Table of Contents
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
@@ -31,6 +26,12 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 * 5.[Investigation -iteration 2](#investi1)
 * 6.[Investigation -iteration 3](#investi2)
 * 7.[Conclusion](#conclusion)
+
+
+```{r setup, include=FALSE,warning=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
 
 
 The following R file contains the related functions we used in this report. 

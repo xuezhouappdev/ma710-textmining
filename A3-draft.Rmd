@@ -3,8 +3,12 @@ Title: "MA710 - New York Times Articles"
 Author: "Xiang Li, Xue Zhou"
 Date: "8 Apri 2017"
 Output: html_document
-TOC: yes
 ---
+
+```{r setup, include=FALSE,warning=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message = FALSE)
+```
+
 
 #Table of Contents
 * 1.[Introduction](#Introduction)

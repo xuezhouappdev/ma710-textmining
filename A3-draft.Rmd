@@ -11,10 +11,10 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
 # Table of Contents
-* 1 [Introduction](#Introduction)
-* 2 [Dataset Creation](#2)
-* 3 [Load the dataset](#3)
-* 4 [Base investigation](#investi0)
+* 1.[Introduction](#Introduction)
+* 2.[Dataset Creation](#2)
+* 3.[Load the dataset](#3)
+* 4.[Base investigation](#investi0)
   * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
   * 4.2 [Cluster Generation](#4.2)
   * 4.3 [Cluster Evaluation](#4.3)
@@ -28,9 +28,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
       * 4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents](#4.3.3.2)
   * 4.4 [Conclusion for This Iteration](#4.4)
 
-* 5 [Investigation -iteration 2](#investi1)
-* 6 [Investigation -iteration 3](#investi2)
-* 7 [Conclusion](#conclusion)
+* 5.[Investigation -iteration 2](#investi1)
+* 6.[Investigation -iteration 3](#investi2)
+* 7.[Conclusion](#conclusion)
 
 
 Below are the 

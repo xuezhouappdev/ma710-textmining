@@ -10,6 +10,33 @@ knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message = FALSE)
 ```
 
 #Table of Contents
+
+#Table of Contents
+* 1.[Introduction](#Introduction)
+* 2.[Goal](#Goal)
+* 3.[Dataset Preparation](#dataprep)
+* 4.[Objective](#objective)
+* 5.1 [Individual Variable Summary](#5.1)
+  * 5.1.1 [School](#5.1.1)
+    * 5.1.1.1 [State](#5.1.1.1)
+    * 5.1.1.2 [Predominant Degree](#5.1.1.2)
+    * 5.1.1.3 [Control of Institution](#5.1.1.3)
+  * 5.1.2 Student Body
+    * 5.1.2.1 [Percentage First-generation Students](#5.1.2.1)
+    * 5.1.2.2 [Number of Applications](#5.1.2.2)
+    * 5.1.2.3 [Median Family Income in Real 2015 Dollars](#5.1.2.3)
+  * 5.1.3 Cost 
+    * 5.1.3.1 [Average Net Price for Title IV Institutions (Both Public and Private Institutions)](#5.1.3.1)
+    * 5.1.3.2 [Percentage of Students Who are Financially Independent](#5.1.3.2)
+  * 5.1.4 Financial Aid
+    * 5.1.4.1 [Percentage of Undergraduates Who Receive a Pell Grant](#5.1.4.1)
+    * 5.1.4.2 [Percent of all Federal Undergraduate Students Receiving a Federal Student Loan](#5.1.4.2l)
+    * 5.1.4.3 [The Median Debt for Students Who Have Completed](#5.1.4.3)
+    * 5.1.4.4 [The Median Debt for Students Who Have not Completed](#5.1.4.4)
+  * 5.1.5 Repayment
+    * 5.1.5.1 [3-year Repayment rate](#5.1.5.1)
+    * 5.1.5.2 [3-year Default rate](#5.1.5.2)
+
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
 * 3.[Load the dataset](#3)

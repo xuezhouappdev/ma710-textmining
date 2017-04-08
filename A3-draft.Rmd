@@ -9,17 +9,16 @@ Output: html_document
 knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message = FALSE)
 ```
 
-
 #Table of Contents
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
 * 3.[Load the dataset](#3)
 * 4.[Base investigation](#investi0)
-  * 4.1 [Data Preparation: Parameters, Value and Reasons]
-  * 4.2 [Cluster Generation]
-  * 4.3 [Cluster Evaluation]
-    * 4.3.1 [Cluster Counts]
-    * 4.3.2 [Numerical Evaluation with Metrics]
+  * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
+  * 4.2 [Cluster Generation](#4.2)
+  * 4.3 [Cluster Evaluation](#4.3)
+    * 4.3.1 [Cluster Counts](#4.3.1)
+    * 4.3.2 [Numerical Evaluation with Metrics](#4.3.2)
       * 4.3.2.1 [Numerical Evaluation: Silhouette Width]
       * 4.3.2.2 [Numerical Evaluation: Dunn Index]
       * 4.3.2.3 [Numerical Evaluation:Connectivity]

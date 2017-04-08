@@ -1,8 +1,8 @@
 ---
-Title: "MA710 - New York Times Articles"
-Author: "Xiang Li, Xue Zhou"
-Date: "8 Apri 2017"
-Output: html_document
+title: "MA710 - New York Times Articles"
+author: "Xiang Li, Xue Zhou"
+date: "8 Apri 2017"
+output: html_document
 ---
 
 ```{r setup, include=FALSE,warning=FALSE, message = FALSE}
@@ -10,53 +10,26 @@ knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message = FALSE)
 ```
 
 #Table of Contents
+*1.[Introduction](#Introduction)
+*2.[Dataset Creation](#2)
+*3.[Load the dataset](#3)
+*4.[Base investigation](#investi0)
+  *4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
+  *4.2 [Cluster Generation](#4.2)
+  *4.3 [Cluster Evaluation](#4.3)
+    *4.3.1 [Cluster Counts](#4.3.1)
+    *4.3.2 [Numerical Evaluation with Metrics](#4.3.2)
+      *4.3.2.1 [Numerical Evaluation: Silhouette Width]
+      *4.3.2.2 [Numerical Evaluation: Dunn Index]
+      *4.3.2.3 [Numerical Evaluation:Connectivity]
+    *4.3.3 [Subjective Evaluation (terms and documents in each cluster)]
+      *4.3.3.1 [Subjective Evaluation: Common Words]
+      *4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents]
+  *4.4 [Conclusion for This Iteration]
 
-#Table of Contents
-* 1.[Introduction](#Introduction)
-* 2.[Goal](#Goal)
-* 3.[Dataset Preparation](#dataprep)
-* 4.[Objective](#objective)
-* 5.1 [Individual Variable Summary](#5.1)
-  * 5.1.1 [School](#5.1.1)
-    * 5.1.1.1 [State](#5.1.1.1)
-    * 5.1.1.2 [Predominant Degree](#5.1.1.2)
-    * 5.1.1.3 [Control of Institution](#5.1.1.3)
-  * 5.1.2 Student Body
-    * 5.1.2.1 [Percentage First-generation Students](#5.1.2.1)
-    * 5.1.2.2 [Number of Applications](#5.1.2.2)
-    * 5.1.2.3 [Median Family Income in Real 2015 Dollars](#5.1.2.3)
-  * 5.1.3 Cost 
-    * 5.1.3.1 [Average Net Price for Title IV Institutions (Both Public and Private Institutions)](#5.1.3.1)
-    * 5.1.3.2 [Percentage of Students Who are Financially Independent](#5.1.3.2)
-  * 5.1.4 Financial Aid
-    * 5.1.4.1 [Percentage of Undergraduates Who Receive a Pell Grant](#5.1.4.1)
-    * 5.1.4.2 [Percent of all Federal Undergraduate Students Receiving a Federal Student Loan](#5.1.4.2l)
-    * 5.1.4.3 [The Median Debt for Students Who Have Completed](#5.1.4.3)
-    * 5.1.4.4 [The Median Debt for Students Who Have not Completed](#5.1.4.4)
-  * 5.1.5 Repayment
-    * 5.1.5.1 [3-year Repayment rate](#5.1.5.1)
-    * 5.1.5.2 [3-year Default rate](#5.1.5.2)
-
-* 1.[Introduction](#Introduction)
-* 2.[Dataset Creation](#2)
-* 3.[Load the dataset](#3)
-* 4.[Base investigation](#investi0)
-  * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
-  * 4.2 [Cluster Generation](#4.2)
-  * 4.3 [Cluster Evaluation](#4.3)
-    * 4.3.1 [Cluster Counts](#4.3.1)
-    * 4.3.2 [Numerical Evaluation with Metrics](#4.3.2)
-      * 4.3.2.1 [Numerical Evaluation: Silhouette Width]
-      * 4.3.2.2 [Numerical Evaluation: Dunn Index]
-      * 4.3.2.3 [Numerical Evaluation:Connectivity]
-    * 4.3.3 [Subjective Evaluation (terms and documents in each cluster)]
-      * 4.3.3.1 [Subjective Evaluation: Common Words]
-      * 4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents]
-  * 4.4 [Conclusion for This Iteration]
-
-* 5.[Investigation -iteration 2](#investi1)
-* 6.[Investigation -iteration 3](#investi2)
-* 7.[Conclusion](#conclusion)
+*5.[Investigation -iteration 2](#investi1)
+*6.[Investigation -iteration 3](#investi2)
+*7.[Conclusion](#conclusion)
 
 
 Below are the 

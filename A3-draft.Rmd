@@ -10,11 +10,11 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ```
 
-#Table of Contents
-* 1.[Introduction](#Introduction)
-* 2.[Dataset Creation](#2)
-* 3.[Load the dataset](#3)
-* 4.[Base investigation](#investi0)
+# Table of Contents
+* 1 [Introduction](#Introduction)
+* 2 [Dataset Creation](#2)
+* 3 [Load the dataset](#3)
+* 4 [Base investigation](#investi0)
   * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
   * 4.2 [Cluster Generation](#4.2)
   * 4.3 [Cluster Evaluation](#4.3)
@@ -28,9 +28,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
       * 4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents](#4.3.3.2)
   * 4.4 [Conclusion for This Iteration](#4.4)
 
-* 5.[Investigation -iteration 2](#investi1)
-* 6.[Investigation -iteration 3](#investi2)
-* 7.[Conclusion](#conclusion)
+* 5 [Investigation -iteration 2](#investi1)
+* 6 [Investigation -iteration 3](#investi2)
+* 7 [Conclusion](#conclusion)
 
 
 Below are the 
@@ -41,12 +41,12 @@ source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 [The text in square brackets are my notes to you. 
  Please remove them from your draft or final report.]
 
-#1. Introduction<a id="Introduction"></a>
+#1 Introduction<a id="Introduction"></a>
 
 [Provide background for and an introduction to the dataset.
   Describe your intended analysis and goals.]
   
-#2. Create the dataset<a id="2"></a>
+#2 Create the dataset<a id="2"></a>
 
 [Do not run this each time you recreate your report.
  Make sure you break this into smaller code blocks and explain each.]
@@ -80,7 +80,7 @@ save(article.df,
 
 ```
 
-#3. Load the dataset<a id="3"></a>
+#3 Load the dataset<a id="3"></a>
 
 
 [This is run every time you knit your report.]

@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 * 7.[Conclusion](#conclusion)
 
 
-Below are the 
+The following R file contains the related functions we used in this report. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 ```

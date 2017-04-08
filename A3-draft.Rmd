@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 * 6.[Investigation -iteration 3](#investi2)
 * 7.[Conclusion](#conclusion)
 
-The following R file contains the related functions we used in this report. 
+The following R file contains the related functions we used in this report. We will explain the related function in the body texts. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 ```

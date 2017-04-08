@@ -41,12 +41,12 @@ source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 [The text in square brackets are my notes to you. 
  Please remove them from your draft or final report.]
 
-#1 Introduction<a id="Introduction"></a>
+# 1 Introduction<a id="Introduction"></a>
 
 [Provide background for and an introduction to the dataset.
   Describe your intended analysis and goals.]
   
-#2 Create the dataset<a id="2"></a>
+# 2 Create the dataset<a id="2"></a>
 
 [Do not run this each time you recreate your report.
  Make sure you break this into smaller code blocks and explain each.]
@@ -80,7 +80,7 @@ save(article.df,
 
 ```
 
-#3 Load the dataset<a id="3"></a>
+# 3 Load the dataset<a id="3"></a>
 
 
 [This is run every time you knit your report.]
@@ -90,9 +90,9 @@ load(file="~/Desktop/project3/article.df.RData")
 glimpse(article.df)
 ```
   
-#4. Base Investigation<a id="investi0"></a>
+# 4. Base Investigation<a id="investi0"></a>
 
-##4.1 Data Preparation: Parameters, Value and Reasons  
+## 4.1 Data Preparation: Parameters, Value and Reasons  
 [Start with a basic set of options, and explain why you chose them in the following table.]
 
 [Do not change the first two lines (27 and 28) of the table. 
@@ -114,7 +114,7 @@ Algorithm  | k-means |
 `k`        | 10 |
 
 
-##4.2 Cluster Generation
+## 4.2 Cluster Generation
 [Create your clusters here. Succinctly explain your code.] 
 
 ```{r eval=TRUE}
@@ -144,8 +144,8 @@ k = 3
 cluster = kmeans(dtm,k)$cluster
 ```
 
-##4.3 Cluster Evaluation
-###4.3.1 Cluster Counts 
+## 4.3 Cluster Evaluation
+### 4.3.1 Cluster Counts 
 
 The table below indicates the number of articles that are contained in each cluster. 
 ```{r echo=FALSE}
@@ -156,13 +156,13 @@ as.data.frame(table(cluster))
  Indicate which clusters are large enough to investigate further.
  Explain your reasoning.]
 
-###4.3.2 Numerical Evaluation with Metrics
-####4.3.2.1 Numerical Evaluation: Silhouette Width
-####4.3.2.2 Numerical Evaluation: Dunn Index
-####4.3.2.3 Numerical Evaluation:Connectivity
+### 4.3.2 Numerical Evaluation with Metrics
+#### 4.3.2.1 Numerical Evaluation: Silhouette Width
+#### 4.3.2.2 Numerical Evaluation: Dunn Index
+#### 4.3.2.3 Numerical Evaluation:Connectivity
 
-###4.3.3 Subjective Evaluation (Terms, Documents in each cluster)
-####4.3.3.1 Subjective Evaluation: Common Words
+### 4.3.3 Subjective Evaluation (Terms, Documents in each cluster)
+#### 4.3.3.1 Subjective Evaluation: Common Words
 [Use the `TopWords` and/or `check.clusters` function to check for common words in 
  each cluster which in the previous section you chose to investigate further. 
  For each cluster indicate which words (if any) occur often enough
@@ -187,7 +187,7 @@ TopWords(dtm, cluster, 1)
  subject and describe this subject. ]
 
 
-####4.3.3.2 Subjective Evaluation: Evaluation: Check Documents  
+#### 4.3.3.2 Subjective Evaluation: Evaluation: Check Documents  
 
 [Use the `view.cluster` function to read the documents in each cluster 
  which you decided in the previous section should be investigated further.
@@ -200,13 +200,13 @@ view.cluster(1)
 ```
 
  
-##4.4 Conclusion for this Iteration
+## 4.4 Conclusion for this Iteration
 
 [From your evaluation, decide which parameter you will change for the next investigation.]
 
 
 
-#5. Investigation -iteration 2<a id="investi1"></a>
+# 5. Investigation -iteration 2<a id="investi1"></a>
 
 [Describe the option you will change from your previous investigation and why you chose it.
  Modify the following table to indicate the parameter choices you made for this investigation.
@@ -231,11 +231,11 @@ Threshold  | 2 |
 
 [From your evaluation, decide which parameter you will change for the next investigation.]
 
-#6. Investigation -iteration 3<a id="investi2"></a>
+# 6. Investigation -iteration 3<a id="investi2"></a>
 
 [Repeat this process until you are satisfied that you have found good clusters and until you are satisfied that you have tried enough options.]
   
-#7. Conclusion<a id="conclusion"></a>
+# 7. Conclusion<a id="conclusion"></a>
 
 [Describe the final modifications used to create your clusters 
  and describe the clusters of the cluster group.]

@@ -1,0 +1,197 @@
+---
+title: "MA710 - New York Times Articles"
+author: "[put your names here]"
+date: "21 Mar 2017"
+output:
+  html_document:
+    toc: yes
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source(file="~/Downloads/20170321_TextMining_functions.R")
+```
+
+[The text in square brackets are my notes to you. 
+ Please remove them from your draft or final report.
+]
+
+# Introduction
+
+[Provide background for and an introduction to the dataset.
+  Describe your intended analysis and goals.]
+  
+# Create the dataset
+
+[Do not run this each time you recreate your report.
+ Make sure you break this into smaller code blocks and explain each.]
+ 
+```{r eval=FALSE}
+library(cluster)
+library(RCurl)
+library(RJSONIO)
+library(rlist)
+library(stringr)
+library(dplyr)
+library(magrittr)
+library(RTextTools)
+library(ngram)
+options(dplyr.width=Inf)
+articlesearch.key = "f1b0b7570f7370114de0df19a3722f8e:7:68259170"
+get.nyt.hits(query.string="dance",     # OPTION
+             begin.date="20170101",    # OPTION
+             end.date  ="20170107")    # OPTION
+article.df = get.nyt.articles(pages = -1, 
+                              query.string = "dance",
+                              begin.date   = "20170101",
+                              end.date     = "20170107") 
+save(article.df, 
+     file="~/Downloads/article.df.RData")
+```
+
+# Load the dataset
+
+[This is run every time you knit your report.]
+```{r}
+load(file="~/Downloads/article.df.RData")
+```
+  
+# Base investigation
+
+[Start with a basic set of options, and explain why you chose them in the following table.]
+
+[Do not change the first two lines (27 and 28) of the table. 
+They define the columns and the headers.]
+
+Parameter | Value | Reason
+--------- | ----- | ------
+Query term | "dance" | Interested in modern dance.
+Begin date | 1 Jan 2017 | Interested in Jan 2017 articles.
+End date   | 31 Jan 2017 | Interested in Jan 2017 articles.
+Field      | `snippet` | 
+Stemming   | Yes/No | 
+N-grams    | 1, |
+Stopwords  | "english"/"SMART" |
+Stopwords  | "dance" | This is the search term.
+Weighting  | binary, TF-IDF, term frequency | 
+Threshold  | 2 |
+Algorithm  | k-means | 
+`k`        | 10 |
+
+[Create your clusters here. Succinctly explain your code.] 
+
+```{r eval=TRUE}
+docs = article.df$snippet 
+docs.clean = clean.documents(docs)
+docs.sns = 
+  modify.words(
+    docs.clean,  
+    stem.words=FALSE,  # OPTION: TRUE or FALSE
+    ngram.vector=1:2, # OPTION: n-gram lengths
+    stop.words=       # OPTION: stop words
+      c(stopwords(kind="english")  
+        # OPTION: "SMART" or "english" 
+        # OPTION: additional stop words
+      )
+  )
+doc.matrix <- 
+  create_matrix(docs.sns, 
+                language="english",      # Do not change
+                stemWords=FALSE,         # Do not change
+                removePunctuation=FALSE, # Do not change
+                weighting=tm::weightTf   # OPTION: weighting (see below)
+  )
+dtm = as.matrix(doc.matrix) 
+dtm=reduce.dtm(dtm,freq.threshold=2) 
+k = 3
+cluster = kmeans(dtm,k)$cluster
+```
+
+### Evaluation: cluster counts 
+
+The table below indicates the number of articles 
+that are contained in each cluster. 
+```{r echo=FALSE}
+as.data.frame(table(cluster))
+#  17  45   2   9   2  60 839  27   5   4 
+```
+[Interpret the information from the table. 
+ Indicate which clusters are large enough to investigate further.
+ Explain your reasoning.]
+
+### Evaluation: common words 
+
+[Use the `TopWords` and/or `check.clusters` function to check for common words in 
+ each cluster which in the previous section you chose to 
+ investigate further. 
+ For each cluster indicate which words (if any) occur often enough
+ to indicate a potential subject of the documents in the cluster.
+ Indicate which clusters seem to have a potential subject and 
+ should be investigated further.]
+
+
+```{r echo=FALSE, warning=FALSE}
+check.clusters(cluster, 5) 
+```
+
+```{r echo=FALSE, warning=FALSE}
+# The `TopWords` function displays the documents 
+# in the cluster whose number is specified with 
+# third parameter
+TopWords(dtm, cluster, 1) 
+```
+
+[Explain whether the documents of this cluster have a common 
+ subject and describe this subject. ]
+
+[Explain whether the documents of this cluster have a common 
+ subject and describe this subject. ]
+
+### Evaluation: check documents  
+
+[Use the `view.cluster` function to read the documents in each cluster 
+ which you decided in the previous section should be investigated further.
+ Look for a single subject common to all or most documents in the cluster.
+ For each cluster indicate whether all or most of the documents in the 
+ cluster share a common subject.]
+ 
+```{r echo=FALSE}
+view.cluster(1)
+```
+
+[From your evaluation, decide which parameter you will change for the next investigation.]
+
+# Investigation 2
+
+[Describe the option you will change from your previous investigation and why you chose it.
+ Modify the following table to indicate the parameter choices you made for this investigation.
+ Include the reasons you made these choices. If you did not change a parameter then simply
+ copy the line from the previous table.]
+
+Parameter | Value | Reason
+--------- | ----- | ------
+Query term | "dance" | Interested in modern dance.
+Begin date | 1 Jan 2015 | Interested in 2015 articles.
+End date   | 31 Dec 2015 | Interested in 2015 articles.
+Field      | `snippet` | 
+Stemming   | Yes/No | 
+N-grams    | 1, 2 |
+Stopwords  | "english"/"SMART" |
+Stopwords  | "dance" | This is the search term.
+Weighting  | binary | 
+Threshold  | 2 |
+`k`        | 10 |
+
+[Evaluate the clusters you create.]
+
+[From your evaluation, decide which parameter you will change for the next investigation.]
+
+# Investigation ?
+
+[Repeat this process until you are satisfied that you have found good clusters and until you are satisfied that you have tried enough options.]
+  
+# Conclusion
+
+[Describe the final modifications used to create your clusters 
+ and describe the clusters of the cluster group.]
+
+[Explain why this is the best set of options/parameters and clusters.]

@@ -5,6 +5,7 @@ date: "8 Apri 2017"
 output: html_document
 ---
 
+
 # Table of Contents
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
@@ -158,9 +159,9 @@ as.data.frame(table(cluster))
  Explain your reasoning.]
 
 ### 4.3.2 Numerical Evaluation with Metrics
-#### 4.3.2.1 Numerical Evaluation: Silhouette Width
-#### 4.3.2.2 Numerical Evaluation: Dunn Index
-#### 4.3.2.3 Numerical Evaluation:Connectivity
+  #### 4.3.2.1 Numerical Evaluation: Silhouette Width
+  #### 4.3.2.2 Numerical Evaluation: Dunn Index
+  #### 4.3.2.3 Numerical Evaluation:Connectivity
 
 ### 4.3.3 Subjective Evaluation (Terms, Documents in each cluster)
 #### 4.3.3.1 Subjective Evaluation: Common Words
@@ -207,7 +208,7 @@ view.cluster(1)
 
 
 
-# 5. Investigation -iteration 2<a id="investi1"></a>
+# 5.Investigation -iteration 2<a id="investi1"></a>
 
 [Describe the option you will change from your previous investigation and why you chose it.
  Modify the following table to indicate the parameter choices you made for this investigation.

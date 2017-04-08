@@ -43,6 +43,29 @@ source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 [The text in square brackets are my notes to you. 
  Please remove them from your draft or final report.]
 
+
+# Table of Contents
+* 1.[Introduction](#Introduction)
+* 2.[Association Rule Analysis](#AR)
+  * 2.1 [Goal](#AR_goal)
+  * 2.2 [Data Preparation](#AR_dp)
+  * 2.3 [Objective](#AR_objective)
+  * 2.4 [Association Rule Analysis - Median earnings six years after entry](#AR_md6)
+  * 2.5 [Conclusions -  Association Rule Analysis for Median earnings six years after entry](#2.5)
+  * 2.6 [Association Rule Analysis - Predominant Degree](#2.6)
+  * 2.7 [Conclusions -  Association Rule Analysis for Predominant Degree](#2.7)
+* 3.[Cluster Analysis](#3)
+  * 3.1 [Goal](#3.1)
+  * 3.2 [Data Preparation](#3.2)
+  * 3.3 [Objective](#3.3)
+  * 3.4 [Cluster Analysis - K means](#3.4)
+  * 3.5 [Cluster Analysis - PAM](#3.5)
+  * 3.6 [Cluster Analysis - Hierarchical](#3.6)
+  * 3.7 [Cluster Validation and Comparison](#3.7)
+  * 3.8 [Interpretation of 3-cluster hierarchical solution](#3.8)
+  * 3.9 [Findings and Conclusion](#3.9)
+* 4 [Future Study](#4)
+
 # 1 Introduction<a id="Introduction"></a>
 
 [Provide background for and an introduction to the dataset.

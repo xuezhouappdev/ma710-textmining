@@ -6,41 +6,40 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE,warning=FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
 ```
 
 #Table of Contents
-*1.[Introduction](#Introduction)
-*2.[Dataset Creation](#2)
-*3.[Load the dataset](#3)
-*4.[Base investigation](#investi0)
-  *4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
-  *4.2 [Cluster Generation](#4.2)
-  *4.3 [Cluster Evaluation](#4.3)
-    *4.3.1 [Cluster Counts](#4.3.1)
-    *4.3.2 [Numerical Evaluation with Metrics](#4.3.2)
-      *4.3.2.1 [Numerical Evaluation: Silhouette Width]
-      *4.3.2.2 [Numerical Evaluation: Dunn Index]
-      *4.3.2.3 [Numerical Evaluation:Connectivity]
-    *4.3.3 [Subjective Evaluation (terms and documents in each cluster)]
-      *4.3.3.1 [Subjective Evaluation: Common Words]
-      *4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents]
-  *4.4 [Conclusion for This Iteration]
+* 1.[Introduction](#Introduction)
+* 2.[Dataset Creation](#2)
+* 3.[Load the dataset](#3)
+* 4.[Base investigation](#investi0)
+  * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
+  * 4.2 [Cluster Generation](#4.2)
+  * 4.3 [Cluster Evaluation](#4.3)
+    * 4.3.1 [Cluster Counts](#4.3.1)
+    * 4.3.2 [Numerical Evaluation with Metrics](#4.3.2)
+      * 4.3.2.1 [Numerical Evaluation: Silhouette Width](#4.3.2.1)
+      * 4.3.2.2 [Numerical Evaluation: Dunn Index](#4.3.2.2)
+      * 4.3.2.3 [Numerical Evaluation:Connectivity](#4.3.2.3)
+    * 4.3.3 [Subjective Evaluation (terms and documents in each cluster)]((#4.3.2.3))
+      * 4.3.3.1 [Subjective Evaluation: Common Words]((#4.3.3.1)
+      * 4.3.3.2 [Subjective Evaluation: Evaluation: Check Documents](#4.3.3.2)
+  * 4.4 [Conclusion for This Iteration](#4.4)
 
-*5.[Investigation -iteration 2](#investi1)
-*6.[Investigation -iteration 3](#investi2)
-*7.[Conclusion](#conclusion)
+* 5.[Investigation -iteration 2](#investi1)
+* 6.[Investigation -iteration 3](#investi2)
+* 7.[Conclusion](#conclusion)
 
 
 Below are the 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-
 source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 ```
 
 [The text in square brackets are my notes to you. 
- Please remove them from your draft or final report.
-]
+ Please remove them from your draft or final report.]
 
 #1. Introduction<a id="Introduction"></a>
 
@@ -201,10 +200,6 @@ view.cluster(1)
 ```
 
  
-
-
-
-
 ##4.4 Conclusion for this Iteration
 
 [From your evaluation, decide which parameter you will change for the next investigation.]

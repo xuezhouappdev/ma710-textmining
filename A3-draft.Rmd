@@ -1,12 +1,12 @@
 ---
-title: "MA710 - New York Times Articles"
-author: "Xiang Li, Xue Zhou"
-date: "8 Apri 2017"
-output:
-  html_document:
-    toc: yes
+Title: "MA710 - New York Times Articles"
+Author: "Xiang Li, Xue Zhou"
+Date: "8 Apri 2017"
+Output: html_document
+TOC: yes
 ---
-# Table of Contents
+
+#Table of Contents
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
 * 3.[Load the dataset](#3)

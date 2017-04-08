@@ -48,7 +48,10 @@ source(file="~/Desktop/project3/20170321_TextMining_functions.R")
 * 1.[Introduction](#Introduction)
 * 2.[Dataset Creation](#2)
 * 3.[Load the Dataset](#3)
-* 4 [Base investigation](#investi0)
+* 4 [Base Investigation](#investi0)
+  * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
+  * 4.2 [Cluster Generation](#4.2)
+  * 4.3 [Cluster Evaluation](#4.3)
 
 # 1 Introduction<a id="Introduction"></a>
 

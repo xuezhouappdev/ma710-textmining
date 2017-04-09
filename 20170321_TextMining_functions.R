@@ -93,7 +93,7 @@ clean.documents = function (document.vector) {
   document.vector %>% # document.vector = docs[93:94]
     tolower() %>%                           # change to lower case
     str_replace_all("'s","")            %>% # remove "'s"
-    str_replace_all("’s","")            %>% # remove "’s"
+    
     str_replace_all("\\$","")           %>% # remove dollar signs
     str_replace_all("\\.","")           %>% # remove periods
     str_replace_all("[[:digit:]]+"," ") %>% # change numbers to a space
@@ -105,6 +105,7 @@ clean.documents = function (document.vector) {
 
 
 # Create strings of n-grams
+
 modify.words = function(document.vector, 
                         stem.words=FALSE, 
                         ngram.vector=1, 
@@ -117,7 +118,7 @@ modify.words = function(document.vector,
     } %>% 
     lapply(function(x) { 
       ngrams(x,ngram.vector) %>%
-        lapply( function(x) paste(x,collapse=".")) %>% 
+        lapply( function(x) paste(x,collapse="")) %>% 
         paste(collapse=" ") 
     })
 }
@@ -178,6 +179,7 @@ TopWords = function (dtm, clusters, i) {
   )
 }
 
+
 check.clusters = function(cluster, count.min) { 
   cluster.counts = table(cluster)
   as.numeric(names(cluster.counts)[cluster.counts >= count.min]) %>%
@@ -191,6 +193,7 @@ view.dtm = function(cluster.number) {
   docs[res$cluster==cluster.number]
 }
 
+#docs is the original version.
 view.cluster = function(cluster.number) {
   docs[cluster==cluster.number]
 }

@@ -648,7 +648,7 @@ view.clustercloud(5)
 
 ```
 
-From the word cloud graph, each term's size and location differetiante the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. 
+From the word cloud graph, each term's size and location differentiate the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. 
 
 
 # 7. Conclusion<a id="conclusion"></a>

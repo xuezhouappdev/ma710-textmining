@@ -198,5 +198,17 @@ view.cluster = function(cluster.number) {
   docs[cluster==cluster.number]
 }
 
+view.cluster2 = function(cluster.number) {
+  docs[cluster2==cluster.number]
+}
+
+view.cluster3 = function(cluster.number) {
+  docs[cluster3==cluster.number]
+}
+
+view.cluster4 = function(cluster.number) {
+  docs[cluster4==cluster.number]
+}
+
 #
 # Define functions (END)

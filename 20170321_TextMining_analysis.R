@@ -49,14 +49,17 @@ articlesearch.key = "28fdd9ef177b47f1802f26d59d81d0a9"
 
 # OPTIONS: query, begin and end dates
 # Create a dataframe of articles from the New York Times
-get.nyt.hits(query.string="google",     # OPTION
-             begin.date="20170201",    # OPTION
+get.nyt.hits(query.string="apple",     # OPTION
+             begin.date="20170301",    # OPTION
              end.date  ="20170408")    # OPTION
 
 article.df = get.nyt.articles(pages = -1,                 # all articles
-                              query.string = "google",     # OPTION
-                              begin.date   = "20170201",  # OPTION
+                              query.string = "apple",     # OPTION
+                              begin.date   = "20170301",  # OPTION
                               end.date     = "20170408")  # OPTION
+
+#total 353 
+
 
 dim(article.df)
 matrix_whole= as.matrix(article.df)
@@ -75,7 +78,18 @@ article.df[doc.ndx,] #get random observations from the extracted data
 # Create `docs` (the document vector) by
 # choosing the text field that you will analyze.
 docs = article.df$lead_paragraph 
-matrix_field=as.matrix(docs)
+
+#remove duplicated records
+docs = as.data.frame(docs)
+rs = duplicated(docs) 
+docs = docs[!rs,]
+docs = as.matrix(docs)
+
+
+#headline
+#docs = article.df$headline 
+
+
 
 str(docs)
 
@@ -89,6 +103,7 @@ docs[doc.ndx]
 # change the cleaning procedure and
 # modify the function `clean.documents`.
 docs.clean = clean.documents(docs)
+
 
 matrix_clean=as.matrix(docs.clean)
 dim(matrix_clean)
@@ -211,18 +226,6 @@ for (i in 1:k) {
 }
 
 
-library(clValid)
-# the rows of the dataset must have names 
-methods.vec = c("hierarchical","kmeans","pam")
-
-clValid.result = clValid(m3,
-                         5:7,maxitems=600,
-                         clMethods=methods.vec,
-                         validation="internal")
-
-
-
-summary(clValid.result)
 
 
 ##bi-gram
@@ -269,7 +272,7 @@ docs.sns =
     stem.words=TRUE,  # OPTION: TRUE or FALSE
     ngram.vector=1, # OPTION: n-gram lengths
     stop.words=       # OPTION: stop words
-      c(stopwords(kind="english"),"google" 
+      c(stopwords(kind="english"),"apple","said","inc" 
         # OPTION: "SMART" or "english" 
         # OPTION: additional stop words
       )
@@ -279,10 +282,10 @@ docs.sns =
 docs.sns = 
   modify.words(
     docs.clean,  
-    stem.words=TRUE,  # OPTION: TRUE or FALSE
+    stem.words=FALSE,  # OPTION: TRUE or FALSE
     ngram.vector=2, # OPTION: n-gram lengths
     stop.words=       # OPTION: stop words
-      c(stopwords(kind="english"),"google" 
+      c(stopwords(kind="english"),"apple","said","inc" 
         # OPTION: "SMART" or "english" 
         # OPTION: additional stop words
       )
@@ -301,6 +304,8 @@ dim(matrix_modified)
 # Check documents
 docs.sns[doc.ndx]
 
+is.na(docs.sns)
+
 # OPTION: weighting, see below
 # Create the document matrix
 doc.matrix <- 
@@ -308,7 +313,7 @@ doc.matrix <-
                 language="english",      # Do not change
                 stemWords=TRUE,         # Do not change
                 removePunctuation=FALSE, # Do not change
-                weighting=tm::weightTf,
+                weighting=tm::weightTfIdf,
                 ngramLength =1 # OPTION: weighting (see below)
   )
 # Weighting OPTIONS:
@@ -367,8 +372,10 @@ table(colSums(dtm))
 # Keep words from the document term matrix
 # that occur at least the number of times
 # indicated by the `freq.threshold` parameter 
-reduced_dtm=reduce.dtm(dtm,freq.threshold=15) 
+reduced_dtm=reduce.dtm(dtm,freq.threshold=10) 
 
+
+reduced_dtm=reduce.dtm(dtm,freq.threshold=14) 
 
 # Check the number of columns/words 
 # remaining in the document-term matrix
@@ -379,7 +386,29 @@ glimpse(reduced_dtm)
 #dataset for clustering 
 reduced_dtm
 
+termFrequency=colSums(reduced_dtm)
+termFrequency
 
+#subset the top 10
+termFrequency_subset = subset(termFrequency,termFrequency>6)
+as.data.frame(termFrequency_subset)
+
+names(termFrequency_subset)
+rownames(as.data.frame(termFrequency_subset))
+
+#wordcloud
+wordcloud(names(termFrequency), termFrequency, random.order=FALSE, max.words = 100,colors=brewer.pal(8, "Dark2"))
+#subset 
+wordcloud(names(termFrequency_subset), termFrequency_subset, random.order=FALSE, max.words = 100,colors=brewer.pal(8, "Dark2"))
+
+df_tf = as.data.frame(termFrequency)
+df_tf$termFrequency
+
+#bar chart
+ggplot(data=df_tf, aes(x=rownames(df_tf), y=df_tf$termFrequency)) +geom_bar(stat="identity")
+
+
+#####clustering 
 rownames(reduced_dtm)
 df_dtm = as.data.frame(reduced_dtm)
 rownames(df_dtm )
@@ -389,45 +418,47 @@ df_dtm$lead_paragraph = rownames(df_dtm)
 ncol(df_dtm)
 df_dtm$lead_paragraph 
 
-length(df_dtm$youtub)
+
 length(df_dtm$lead_paragraph)
 
 
+
 #clvalid
-rownames(df_dtm)=1:717 
+rownames(df_dtm)=1:335
 rownames(df_dtm)
 colnames(df_dtm)
 
 
-dtm.clValid = clValid(df_dtm[,-84],    #remove the contents col
-                      nClust = 6:15,
+dtm.clValid = clValid(df_dtm[,-71],    #remove the contents col
+                      nClust = 5:15,
                       clMethods = c("kemans","pam","hierarchical"),
                       validation = 'internal')
 summary(dtm.clValid)
 
-dtm.clValid = clValid(df_dtm[,1:612], 
-                      nClust = 6:10,
-                      clMethods = c("kemans","pam","hierarchical"),
-                      validation = 'internal')
-summary(dtm.clValid)
+
 
 
 
 # OPTION: number of clusters to find
 k = 8
 k = 6
+k = 7
+k = 5
 
+
+
+namecol=71
 # OPTION: cluster algorithm KMEANS
-cluster = kmeans(df_dtm[,-84],k)$cluster
+cluster = kmeans(df_dtm[,-namecol],k)$cluster
 table(cluster) #frequency of each cluster
 
 
 
 #pam and silhuosette plot
-cluster = pam(df_dtm[,-84],k)$cluster
+cluster = pam(df_dtm[,-namecol],k)$cluster
 
-data.dist.mat = daisy(df_dtm[,-84])
-data.sil2 = silhouette(x=as.numeric(pam(df_dtm[,-84],k)$cluster),
+data.dist.mat = daisy(df_dtm[,-namecol])
+data.sil2 = silhouette(x=as.numeric(pam(df_dtm[,-namecol],k)$cluster),
                        dist=data.dist.mat)
 layout(matrix(1))
 plot(data.sil2)
@@ -435,7 +466,7 @@ plot(data.sil2)
 
 
 #hclust
-hclust.res = hclust(dist(df_dtm[,-84]))
+hclust.res = hclust(dist(df_dtm[,-namecol]))
 cluster = cutree(hclust.res,k)
 plot(hclust.res)
 
@@ -450,7 +481,7 @@ as.data.frame(table(cluster))
 # to look at the common words in each cluster
 # The second parameter is the minimum number of rows that a cluster must have to be displayed.
 options(warn=-1)
-check.clusters(cluster,4)   
+check.clusters(cluster,6)   
 options(warn=0)
 
 # EVALUATE the clusters using `TopWords` 
@@ -458,12 +489,25 @@ options(warn=0)
 # by the `check.cluster` function, except 
 # that the output is displayed vertically
 options(warn=-1)
-1: 6%>%
-  lapply(function(i) TopWords(as.matrix(df_dtm[,-84]), cluster, i))
+1: 5%>%
+  lapply(function(i) TopWords(as.matrix(df_dtm[,-namecol]), cluster, i))
 options(warn=0)
-
+ 
 # EVALUATE the clusters by looking at the documents in the clusters (the version with no clean)
-view.cluster(2)
+
+
+
 view.cluster(1)
+
+view.cluster(2)
+view.cluster(3)
+view.cluster(4)
+view.cluster(5)
+view.cluster(6)
+
+
+view.cluster(7)
+view.cluster(8)
+
 
 # End

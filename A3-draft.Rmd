@@ -2,10 +2,12 @@
 title: "MA710 - New York Times Articles"
 author: "Xiang Li, Xue Zhou"
 date: "8 Apri 2017"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
-```{r setup, include=FALSE,warning=FALSE, message = FALSE}
+```{r setup, include=FALSE, warning=FALSE, message = FALSE, eval=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ```
@@ -58,7 +60,8 @@ Specifically, the goal of this research is to first analyze the term frequencies
 
 Below are all the libraries we used in this report. The R file ```20170321_TextMining_functions.R``` contains some pre-defined functions we used in this report. We will explain the related functions in the corresponding code block accordingly.
 
-```{r eval=FALSE echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
 library(cluster)
 library(RCurl)
 library(RJSONIO)
@@ -74,12 +77,12 @@ library(SnowballC)
 library(ggplot2)
 library(clValid)
 
-source(file="~/Desktop/project3/20170321_TextMining_functions.R")
+source(file="~/Desktop/ma710-textmining/20170321_TextMining_functions.R")
 ```
 
 We used the New York Times API to retrieve a set of articles. The ```articlesearch.key``` stores the API key used to connect to the New York Times article database. With the function ```get.nyt.hits```, we are able to get the number of hits returned from the query; With the function of ```get.nyt.articles```, all the records are stored in a data frame ```article.df```. The topic of this text mining is *apple*. To ensure a reasonable processing time, we set the time range between *20170301* and *20170408*. 
 
-```{r}
+```{r eval=FALSE,echo = FALSE}
 
 options(dplyr.width=Inf) # all columns are visiable when printing dataframes 
 articlesearch.key = "28fdd9ef177b47f1802f26d59d81d0a9"
@@ -95,19 +98,18 @@ article.df = get.nyt.articles(pages = -1,
                               end.date     = "20170408") 
 
 save(article.df, 
-     file="~/Desktop/project3/article.df.RData")
+     file="~/Desktop/ma710-textmining/article.df.RData")
 
 
 ```
 
-There are 353 records in total, based on the defined parameters. We saved all the data in the R data file ```article.df.RData``` for the future references. 
+There are 354 records in total, based on the defined parameters. We saved all the data in the R data file ```article.df.RData``` for the future references. 
 
 # 3 Load the dataset<a id="3"></a>
 As all the records were saved in ```article.df.RData``` , we first loaded the data into R before we chose the field of interest. With the ```glimpse``` function, we are able to see the structure of the data frame. 
 
 ```{r}
-load(file="~/Desktop/project3/article.df.RData")
-glimpse(article.df)
+load(file="~/Desktop/ma710-textmining/article.df.RData")
 
 docs = article.df$lead_paragraph 
 
@@ -127,17 +129,18 @@ length(docs_unique)
 
 ```
 
-338 unique records are stored in our data set. 
+339 unique records are stored in our data set. 
 
 
-Then we used the ```clean.documents``` function to clean the 338 records. As defined in the  ```20170321_TextMining_functions.R``` file, this function helps to change all the letters to lower case and remove the special characters, punctuation and numbers from the documents.
+Then we used the ```clean.documents``` function to clean the 339 records. As defined in the  ```20170321_TextMining_functions.R``` file, this function helps to change all the letters to lower case and remove the special characters, punctuation and numbers from the documents.
 
 ```{r}
 docs.clean = clean.documents(docs)
 
+#save data locally
 save(docs.clean, 
-     file="~/Desktop/ma710-textmining/docs.clean.RData")
-load(file="~/Desktop/ma710-textmining/docs.clean.RData")
+     file="~/Desktop/ma710_textmining/docs.clean.RData")
+
 ```
 
 As a result, the clean data set was stored in ```docs.clean ```. We saved the data set locally as ```docs.clean.RData``` for the further references.  
@@ -165,6 +168,10 @@ Algorithm  | hierarchical | based on the clValid output
 With the following code, we split the words in each record, kept the stem part of a word and removed the stopword of *apple* as it is the search term. We tried the uni-gram model first in the base investigation, thus ```ngram.vector``` was set to 1. 
 
 ```{r}
+
+#load the data
+load(file="~/Desktop/ma710-textmining/docs.clean.RData")
+
 docs.sns = 
   modify.words(
     docs.clean,  
@@ -279,7 +286,6 @@ options(warn=0)
 ```
 
 According to the output, top 12 words are displayed for each cluster. To make it easy to find a topic for each cluster, we mainly focus on the top 3 words. The top 3 words in cluster 1 are *said*, *week* and *new*; The top 3 words in cluster 2 are *share*, *stock*, *technolog*; The top 3 words in cluster 3 are *wikileak*, *hack* and *cia*; The top 4 words in cluster 4 are *app*, *googl* and *inc*;The top 3 words in cluster 5 are *servic*, *new* and *month*; The top 3 words in cluster 6 are *court*, *high* and *school*; 
-
 However, it is hard to determine an obvious subject for each cluster based on the exiting information. Additionally, considering the Silhouette Width of this cluster solution is not high (0.2745), which suggests that the clusters are not well separated, we did not go through the detailed documents of these 6 clusters and then continued with the 2nd round investigation.  
 
 ## 4.5 Conclusion for this Iteration<a id="4.5"></a>  
@@ -640,6 +646,7 @@ view.clustercloud= function(cluster.number){
 }
 
 #check cluster cloud for each cluster
+options(warn=-1)
 view.clustercloud(1)
 view.clustercloud(2)
 view.clustercloud(3)
@@ -648,8 +655,7 @@ view.clustercloud(5)
 
 ```
 
-From the word cloud graph, each term's size and location differentiate the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. 
-
+From the word cloud graph, each term's size and location differentiate the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. In the first word cloud, the important words are *donald trump*, *new york*, *supreme court* and *white house*; In the second word cloud, the important words are *anti secrecy*, *secrecy group*, *group wikileaks*. In the third word cloud, the important words are *week ending*, *charts week* and *ending march*. In the fourth cluster, the important words are *authorname*, *book title * and *author name*. In the fifth cluster, the important words are *app store*, *charts week* and *official charts*. As a conclusion, all thses information are consistent with the top common words we derived in 6.4.2 and the corresponding documents we checked in 6.4.3. 
 
 # 7. Conclusion<a id="conclusion"></a>
 

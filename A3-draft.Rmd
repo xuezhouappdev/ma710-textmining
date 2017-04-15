@@ -14,45 +14,45 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 
 # Table of Contents
-* 1.[Introduction](#Introduction) 
-* 2.[Dataset Creation](#2)
-* 3.[Load the Dataset](#3) 
+* 1 [Introduction](#Introduction) 
+* 2 [Dataset Creation](#2)
+* 3 [Load the Dataset](#3) 
 * 4 [Base Investigation](#investi0)
-  * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
-  * 4.2 [Determine the Best Cluster Solution with Metrics:clValid](#4.2)
-  * 4.3 [Cluster Generation](#4.3)
-  * 4.4 [Subjective Evaluation (terms and documents in each cluster)](#4.4)
-    * 4.4.1 [Cluster Counts](#4.4.1)
-    * 4.4.2 [Subjective Evaluation Common Words](#4.4.2)
-    * 4.4.3 [Subjective Evaluation: Evaluation: Check Documents](#4.4.3)
-  * 4.5 [Conclusion for This Iteration](#4.5)
-* 5.[Investigation -iteration 2](#investi1)
-  * 5.1 [Data Preparation: Parameters, Value and Reasons](#5.1)
-  * 5.2 [Determine the Best Cluster Solution with Metrics:clValid](#5.2)
-  * 5.3 [Cluster Generation](#5.3)
-  * 5.4 [Subjective Evaluation (terms and documents in each cluster)](#5.4)
-    * 5.4.1 [Cluster Counts](#5.4.1)
-    * 5.4.2 [Subjective Evaluation Common Words](#5.4.2)
-    * 5.4.3 [Subjective Evaluation: Evaluation: Check Documents](#5.4.3)
-  * 5.5 [Conclusion for This Iteration](#5.5)
-* 6.[Investigation -iteration 3](#investi2)
-  * 6.1 [Data Preparation: Parameters, Value and Reasons](#6.1)
-  * 6.2 [Determine the Best Cluster Solution with Metrics:clValid](#6.2)
-  * 6.3 [Cluster Generation](#6.3)
-  * 5.4 [Subjective Evaluation (terms and documents in each cluster)](#6.4)
-    * 6.4.1 [Cluster Counts](#6.4.1)
-    * 6.4.2 [Subjective Evaluation Common Words](#6.4.2)
-    * 6.4.3 [Subjective Evaluation: Evaluation: Check Documents](#6.4.3)
-  * 6.5 [Conclusion for This Iteration](#6.5)
-* 7.[Conclusion](#conclusion)
-* 8.[Future Studies](#8)    
+    * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
+    * 4.2 [Determine the Best Cluster Solution with Metrics:clValid](#4.2)
+    * 4.3 [Cluster Generation](#4.3)
+    * 4.4 [Subjective Evaluation (terms and documents in each cluster)](#4.4)
+        * 4.4.1 [Cluster Counts](#4.4.1)
+        * 4.4.2 [Subjective Evaluation Common Words](#4.4.2)
+        * 4.4.3 [Subjective Evaluation: Evaluation: Check Documents](#4.4.3)
+     * 4.5 [Conclusion for This Iteration](#4.5)
+* 5 [Investigation -iteration 2](#investi1)
+     * 5.1 [Data Preparation: Parameters, Value and Reasons](#5.1)
+     * 5.2 [Determine the Best Cluster Solution with Metrics:clValid](#5.2)
+     * 5.3 [Cluster Generation](#5.3)
+     * 5.4 [Subjective Evaluation (terms and documents in each cluster)](#5.4)
+        * 5.4.1 [Cluster Counts](#5.4.1)
+        * 5.4.2 [Subjective Evaluation Common Words](#5.4.2)
+        * 5.4.3 [Subjective Evaluation: Evaluation: Check Documents](#5.4.3)
+     * 5.5 [Conclusion for This Iteration](#5.5)
+* 6 [Investigation -iteration 3](#investi2)
+     * 6.1 [Data Preparation: Parameters, Value and Reasons](#6.1)
+     * 6.2 [Determine the Best Cluster Solution with Metrics:clValid](#6.2)
+     * 6.3 [Cluster Generation](#6.3)
+     * 6.4 [Subjective Evaluation (terms and documents in each cluster)](#6.4)
+        * 6.4.1 [Cluster Counts](#6.4.1)
+        * 6.4.2 [Subjective Evaluation Common Words](#6.4.2)
+        * 6.4.3 [Subjective Evaluation: Evaluation: Check Documents](#6.4.3)
+     * 6.5 [Conclusion for This Iteration](#6.5)
+* 7 [Conclusion](#conclusion)
+* 8 [Future Studies](#8)    
 
 
 # 1 Introduction<a id="Introduction"></a>
 
 Nowadays most of the information in business, industry government and other institutions is stored in text format. A document may contain largely unstructured text components. The goal of text mining is discover relevant information in text by transforming the text into data that can be used for further analysis. 
 
-In this analysis, we implemented text mining and cluster analysis on 338 articles from New York Times. We used the Article Search API provided by New York Times to retrieve the documents. To complete the code in a reasonable amount of time, we did not retrieve large amounts of articles from NY Times through the API. The search query we use is *apple*.
+In this analysis, we implemented text mining and cluster analysis on 338 articles from New York Times. We used the Article Search API provided by New York Times to retrieve the documents. To complete the code in a reasonable amount of time, we did not retrieve large amounts of articles from NY Times through the API. The search query we use is "**apple**".
 
 Specifically, the goal of this research is to first analyze the term frequencies in this collection, and then conduct cluster analysis to segment the articles into groups based on the common topic. 
 
@@ -80,7 +80,7 @@ library(clValid)
 source(file="~/Desktop/ma710-textmining/20170321_TextMining_functions.R")
 ```
 
-We used the New York Times API to retrieve a set of articles. The ```articlesearch.key``` stores the API key used to connect to the New York Times article database. With the function ```get.nyt.hits```, we are able to get the number of hits returned from the query; With the function of ```get.nyt.articles```, all the records are stored in a data frame ```article.df```. The topic of this text mining is *apple*. To ensure a reasonable processing time, we set the time range between *20170301* and *20170408*. 
+We used the New York Times API to retrieve a set of articles. The ```articlesearch.key``` stores the API key used to connect to the New York Times article database. With the function ```get.nyt.hits```, we are able to get the number of hits returned from the query; With the function of ```get.nyt.articles```, all the records are stored in a data frame ```article.df```. The topic of this text mining is **apple**. To ensure a reasonable processing time, we set the time range between **20170301** and **20170408**. 
 
 ```{r eval=FALSE,echo = FALSE}
 
@@ -106,11 +106,12 @@ save(article.df,
 There are 354 records in total, based on the defined parameters. We saved all the data in the R data file ```article.df.RData``` for the future references. 
 
 # 3 Load the dataset<a id="3"></a>
+
 As all the records were saved in ```article.df.RData``` , we first loaded the data into R before we chose the field of interest. With the ```glimpse``` function, we are able to see the structure of the data frame. 
 
-```{r}
+```{r include=FALSE, warning=FALSE, message = FALSE}
 load(file="~/Desktop/ma710-textmining/article.df.RData")
-
+glimpse(article.df)
 docs = article.df$lead_paragraph 
 
 ```
@@ -148,7 +149,7 @@ As a result, the clean data set was stored in ```docs.clean ```. We saved the da
 # 4. Base Investigation<a id="investi0"></a>
 ## 4.1 Data Set Review: Parameters, Value and Reasons<a id="4.1"></a>  
 
-In the base investigation, we chose the parameters, values and reasons as the table shows below. As we have determined the topic, date range and field of interest in the previous sessions. The first 4 parameters in the table remain the same through all the rounds of investigations. The parameters used in this round are displayed below.
+In the base investigation, we chose the parameters, values and reasons as the table shows below. As we have determined the topic, date range and field of interest in the previous sessions. The first 4 parameters in the table remained the same through all the rounds of investigations. 
 
 Parameter | Value | Reason
 --------- | ----- | ------
@@ -165,7 +166,7 @@ Threshold  | 10 | reduce the number of terms
 Algorithm  | hierarchical | based on the clValid output
 `k`        | 6 | based on the clValid output
 
-With the following code, we split the words in each record, kept the stem part of a word and removed the stopword of *apple* as it is the search term. We tried the uni-gram model first in the base investigation, thus ```ngram.vector``` was set to 1. 
+With the following code, we split the words in each record, kept the stem part of a word and removed the stopword of "**apple**" as it is the search term. We tried the uni-gram model first in the base investigation, thus ```ngram.vector``` was set to 1. 
 
 ```{r}
 
@@ -209,7 +210,7 @@ table(dtm)
 table(colSums(dtm))
 
 ```
-From the first output, we can see that among the document-term matrix, 717315 cells are *0*, 5293 cells are *1* and 36 cells are *2*; Each non-zero entry corresponds to a certain word appearing in a certain document. The second output displays the distribution of word frequencies for the entire collection of articles: each number indicates the total number of times that specific term appear in all the articles. 
+From the first output, we can see that among the document-term matrix, 717315 cells are **0**, 5293 cells are **1** and 36 cells are **2**; Each non-zero entry corresponds to a certain word appearing in a certain document. The second output displays the distribution of word frequencies for the entire collection of articles: each number indicates the total number of times that specific term appear in all the articles. 
 
 Considering that many words have a very low frequency in the matrix, we used ```reduce.dtm``` function to keep the words that occur at least 10 times in the matrix. 
 
@@ -221,7 +222,7 @@ The modified matrix was named with ```reduced_dtm```. We used this data set to i
 
 ## 4.2 Determine the Best Cluster Solution with Metrics:clValid<a id="4.2"></a>  
 
-We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. As ```clValid``` function requires all the observations have an appropriate row name, we changed the row names from the lead paragraph texts to the row number. To reserve the lead paragraph texts, we created a new column ```lead_paragraph``` in the data set before we renamed the row names. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as *kemans*, *pam*, *hierarchical*, and set the ```nClust``` to 6:15. 
+We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. As ```clValid``` function requires all the observations have an appropriate row name, we changed the row names from the lead paragraph texts to the row number. To reserve the lead paragraph texts, we created a new column ```lead_paragraph``` in the data set before we renamed the row names. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as **kemans**, **pam**, **hierarchical**, and set the ```nClust``` to 6:15. 
 
 ```{r}
 
@@ -285,12 +286,13 @@ options(warn=0)
  
 ```
 
-According to the output, top 12 words are displayed for each cluster. To make it easy to find a topic for each cluster, we mainly focus on the top 3 words. The top 3 words in cluster 1 are *said*, *week* and *new*; The top 3 words in cluster 2 are *share*, *stock*, *technolog*; The top 3 words in cluster 3 are *wikileak*, *hack* and *cia*; The top 4 words in cluster 4 are *app*, *googl* and *inc*;The top 3 words in cluster 5 are *servic*, *new* and *month*; The top 3 words in cluster 6 are *court*, *high* and *school*; 
+According to the output, top 12 words are displayed for each cluster. To make it easy to find a topic for each cluster, we mainly focus on the top 3 words. The top 3 words in cluster 1 are **"said"**, **"week"** and **"new"**; The top 3 words in cluster 2 are **"share"**, **"stock"**, **"technolog"**; The top 3 words in cluster 3 are **"wikileak"**, **"hack"** and **"cia"**; The top 4 words in cluster 4 are **"app"**, **"googl"** and **"inc"**;The top 3 words in cluster 5 are **"servic"**, **"new"** and **"month"**; The top 3 words in cluster 6 are **"court"**, **"high"** and **"school"**. 
+
 However, it is hard to determine an obvious subject for each cluster based on the exiting information. Additionally, considering the Silhouette Width of this cluster solution is not high (0.2745), which suggests that the clusters are not well separated, we did not go through the detailed documents of these 6 clusters and then continued with the 2nd round investigation.  
 
 ## 4.5 Conclusion for this Iteration<a id="4.5"></a>  
 
-In this base investigation, though we did not find a optimum cluster solution, we noticed that some words with high frequency did not contain much useful information, such as *said* and *inc*, we would consider them as stopwords in the 2nd investigation. 
+In this base investigation, though we did not find a optimum cluster solution, we noticed that some words with high frequency did not contain much useful information, such as **"said"** and **"inc"**, we would consider them as stopwords in the 2nd investigation. 
 
 # 5.Investigation -iteration 2<a id="investi1"></a>
 ## 5.1 Data Set Review: Parameters, Value and Reasons<a id="5.1"></a>    
@@ -312,7 +314,7 @@ Threshold  | 5 | reduce the number of terms
 Algorithm  | Hierarchical  | based on the clValid output
 `k`        | 5 | based on the clValid output
 
-Similar with the last investigation, we started the analysis with the data set ```docs.clean```. Two new words *said* and *inc* were added to the list of the stopwords.
+Similar with the last investigation, we started the analysis with the data set ```docs.clean```. Two new words **"said"** and **"inc"** were added to the list of the stopwords.
 
 ```{r}
 docs.sns2 = 
@@ -347,19 +349,14 @@ Since we used ```weightTfIdf``` as the weighting option, it makes so sense to us
 
 ```{R}
 range(colSums(dtm2))
-```
-
-The output displays the distribution of word frequencies for the entire collection of articles. We used threshold 5 to keep the words with the total weightTfIdf value larger than 5, then we used ```reduce.dtm``` function to filter the terms with a low frequency. 
-
-```{r}
 reduced_dtm2=reduce.dtm(dtm2,freq.threshold=5) 
 ```
 
-The modified matrix was named with ```reduced_dtm2```. We used this data set to implement the cluster analysis in the following sections. 
+The output displays the distribution of word frequencies for the entire collection of articles. We used threshold 5 to keep the words with the total weightTfIdf value larger than 5, then we used ```reduce.dtm``` function to filter the terms with a low frequency. The modified matrix was named with ```reduced_dtm2```. We used this data set to implement the cluster analysis in the following sections. 
 
 ## 5.2 Determine the Best Cluster Solution with Metrics:clValid<a id="5.2"></a>  
 
-We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. To reserve the lead paragraph texts, we created a new column ```lead_paragraph``` in the data set before we renamed the row names. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as *kemans*, *pam*, *hierarchical*, and set the ```nClust``` to 5:15. 
+We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. To reserve the lead paragraph texts, we created a new column ```lead_paragraph``` in the data set before we renamed the row names. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as **kemans**, **pam**, **hierarchical**, and set the ```nClust``` to 5:15. 
 
 ```{r}
 
@@ -402,7 +399,7 @@ With the value of 5, the observations are clustered into 5 groups. Then We evalu
 ## 5.4 Subjective Evaluation (terms and documents in each cluster) 
 ### 5.4.1 Cluster Counts
 
-With the following code, we were able to check the cluster sizes for each cluster. 
+With the following code, we checked the cluster sizes for each cluster. 
 
 ```{r}
 as.data.frame(table(cluster2))
@@ -422,7 +419,7 @@ options(warn=0)
 
 ```
 
-The top 3 words in cluster 1 are *new*, *compani* and *will*; The top 3 words in cluster 2 are *movi*, *itun*, *chart*; The top 3 words in cluster 3 are *itun*, *music* and *chart*; The top 3 words in cluster 4 are *store*, *app* and *chart* and the top 3 words in cluster 5 are *histori*, *app* and *chart*. 
+The top 3 words in cluster 1 are **"new"**, **"compani"** and **"will"**; The top 3 words in cluster 2 are **"movi"**, **"itun"**, **"chart"**; The top 3 words in cluster 3 are **"itun"**, **"music"** and **"chart"**; The top 3 words in cluster 4 are **"store"**, **"app"** and **"chart"** and the top 3 words in cluster 5 are **"histori"**, **"app"** and **"chart"**. 
 
 ### 5.4.3 Subjective Evaluation: Evaluation: Check Documents<a id="5.4.3"></a>  
 
@@ -441,18 +438,18 @@ view.cluster2(4)
 view.cluster2(5)
 ```
 
-By checking the corresponding documents, the cluster 2 articles have a common topic: *iTunes Movies U.S. charts*; the cluster 3 articles have a common topic: *iTunes' Official Music Charts*, the cluster 4 articles have a common topic *App Store Official Charts*; the cluster 4 only has one article with the topic of *Today in History*. The common subjective retrieved from the original documents in these 4 clusters are consistent with the top common words we derived in the section 5.4.2. 
+By checking the corresponding documents, the cluster 2 articles have a common topic: **iTunes Movies U.S. charts**; the cluster 3 articles have a common topic: **iTunes' Official Music Charts**, the cluster 4 articles have a common topic **App Store Official Charts**; the cluster 4 only has one article with the topic of **Today in History**. The common subjective retrieved from the original documents in these 4 clusters are consistent with the top common words we derived in the section 5.4.2. 
 
-However, we can not get much insights from the top common words in the cluster 1, as the words with high frequency in the 1st cluster are *new*, *will*, *year*, *use* and *trump*, but the 321 documents are mainly related to the topics like *the Apple products*, *polotics*, *market* and *technology*. 
+However, we can not get much insights from the top common words in the cluster 1, as the words with high frequency in the 1st cluster are **"new"**, **"will"**, **"year"**, **"use"** and **"trump"**, but the 321 documents are mainly related to the topics like **the Apple products**, **polotics**, **market** and **technology**. 
 
 ## 5.5 Conclusion for this Iteration<a id="5.5"></a>  
 
-In this investigation, we found a better cluster solution than the last round. However, the top common words retrieved from the 1st cluster are not convincing enough, which are not much consistent with the actual texts in the cluster 1. Moreover, some meaningless terms still rank top in the term frequency list like *will*. As a result, we started with the 3rd investigation.
+In this investigation, we found a better cluster solution than the last round. However, the top common words retrieved from the 1st cluster are not convincing enough, which are not much consistent with the actual texts in the cluster 1. Moreover, some meaningless terms still rank top in the term frequency list like **"will"**. As a result, we started with the 3rd investigation.
 
 # 6. Investigation -iteration 3<a id="investi2"></a>
 ## 6.1 Data Set Review: Parameters, Value and Reasons<a id="6.1"
 
-In the 3nd round investigation, we tried the bi-gram model. Based on the previous analysis, the word *will* is added to the stopwords list. We changed the weighting option back to ```weightTf``` so as to select the threshold easier. Considering that the default stem procedure in R will reduce some valid information by over-stemming the words (*apply* to *appli*, *companies* to *compani*), we did not stem the words in the bi-gram iteration.
+In the 3nd round investigation, we tried the bi-gram model. Based on the previous analysis, the word **"will"** is added to the stopwords list. We changed the weighting option back to ```weightTf``` so as to select the threshold easier. Considering that the default stem procedure in R will reduce some valid information by over-stemming the words (**apply** to **appli**, **companies** to **compani**), we did not stem the words in the bi-gram iteration.
 
 The query term, date range and field are still the same as the first 2 investigations. The table below displays all the parameters. 
 
@@ -471,7 +468,7 @@ Threshold  | 4 | reduce the number of terms
 Algorithm  | hierarchical | based on the clValid output
 `k`        | 5  | based on the clValid output
 
-Similarly, we started the analysis with the data set ```docs.clean```. A new words *will* was added to the list of the stopwords.
+Similarly, we started the analysis with the data set ```docs.clean```. A new words **will** was added to the list of the stopwords.
 
 ```{r}
 docs.sns3 = 
@@ -486,7 +483,7 @@ docs.sns3 =
 
 The new data set was saved as ```docs.sns3```. 
 
-A new data set *doc.matrix3* was created with ```create_matrix``` function. We set ```weighting``` option as   ```weightTf``` in this round.
+A new data set ```doc.matrix3``` was created with ```create_matrix``` function. We set ```weighting``` option as   ```weightTf``` in this round.
 
 ```{R}
 doc.matrix3 <- 
@@ -510,7 +507,7 @@ table(dtm3)
 table(colSums(dtm3))
 ```
 
-From the first output, 1547336 cells are *0* and 5098 cells are *1* in the document term matrix; The second output displays the distribution of word frequencies for the entire collection of articles: each number indicates the total number of times that specific term appear in all the articles. 
+From the first output, 1547336 cells are **0** and 5098 cells are **1** in the document term matrix; The second output displays the distribution of word frequencies for the entire collection of articles: each number indicates the total number of times that specific term appear in all the articles. 
 
 We used threshold 4 to keep the words with the total weightTfIdf value larger than 4. Similarly, we used ```reduce.dtm``` function here.
 
@@ -522,7 +519,7 @@ The modified matrix was named with ```reduced_dtm3```. We used this data set to 
 
 ## 6.2 Determine the Best Cluster Solution with Metrics:clValid<a id="6.2"></a>  
 
-We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. After changing the row names from the lead paragraph texts to the row number, we reserved the lead paragraph texts in a new column ```lead_paragraph``` in the data set. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as *kemans*, *pam*, *hierarchical*, and set the ```nClust``` to 5:15. 
+We used the ```clValid``` function to determine the optimum cluster numbers as well as best cluster method. After changing the row names from the lead paragraph texts to the row number, we reserved the lead paragraph texts in a new column ```lead_paragraph``` in the data set. Then we used ```clValid``` function to find the best cluster solutions. We set the cluster methods as **kemans**, **pam**, **hierarchical**, and set the ```nClust``` to 5:15. 
 
 ```{r}
 
@@ -587,7 +584,7 @@ options(warn=0)
 
 ```
 
-The top bi-gram terms in cluster 1 are *donald trump*, *supreme court*, *white house*, *electroni csco*, *samsung electronics*, which seem to be the news about the politics and the electronic industry. The top bi-grams in cluster 2 are *intelligence agency*, *central intelligence*, *anti secrecy*, *hacking tools*, which are focused on news about hacking and security. The top bi-grams in cluster 3 are *charts week*, *itunes official* and *official music*, which are about the music/movie weekly ranking; The top bi-grams in cluster 4 are *author name*, *book title*, *isbn publisher* and *rank book*, which are about the books. The top bi-grams in cluster 5  are *apps tore*, *charts week* and *official charts*, which are about the apple store chart. By observing the common words, every cluster seems to have a obvious topic. Next we checked the original documents in each cluster to validate our assumptions.  
+The top bi-gram terms in cluster 1 are **"donald trump"**, **"supreme court"**, **"white house"**, **"electroni csco"**, **"samsung electronics"**, which seem to be the news about the politics and the electronic industry. The top bi-grams in cluster 2 are **"intelligence agency"**, **"central intelligence"**, **"anti secrecy"**, **"hacking tools"**, which are focused on news about hacking and security. The top bi-grams in cluster 3 are **"charts week"**, **"itunes official"** and **"official music"**, which are about the music/movie weekly ranking; The top bi-grams in cluster 4 are **"author name"**, **"book title"**, **"isbn publisher"** and **"rank book"**, which are about the books. The top bi-grams in cluster 5  are **"apps tore"**, **"charts week"** and **"official charts"**, which are about the apple store chart. By observing the common words, every cluster seems to have a obvious topic. Next we checked the original documents in each cluster to validate our assumptions.  
 
 ### 6.4.3 Subjective Evaluation: Evaluation: Check Documents<a id="6.4.3"></a>  
 
@@ -655,21 +652,21 @@ view.clustercloud(5)
 
 ```
 
-From the word cloud graph, each term's size and location differentiate the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. In the first word cloud, the important words are *donald trump*, *new york*, *supreme court* and *white house*; In the second word cloud, the important words are *anti secrecy*, *secrecy group*, *group wikileaks*. In the third word cloud, the important words are *week ending*, *charts week* and *ending march*. In the fourth cluster, the important words are *authorname*, *book title* and *author name*. In the fifth cluster, the important words are *app store*, *charts week* and *official charts*. As a conclusion, all thses information are consistent with the top common words we derived in 6.4.2 and the corresponding documents we checked in 6.4.3. 
+From the word cloud graph, each term's size and location differentiate the term's frequency in the collection. The larger the size of the term and the closer the term locates to the center, the higher frequency that term has. In the first word cloud, the important words are **"donald trump"**, **"new york"**, **"supreme court"** and **"white house"**; In the second word cloud, the important words are **"anti secrecy"**, **"secrecy group"**, **"group wikileaks"**. In the third word cloud, the important words are **"week ending"**, **"charts week"** and **"ending march"**. In the fourth cluster, the important words are **"authorname"**, **"book title"** and **"author name"**. In the fifth cluster, the important words are **"app store"**, **"charts week"** and **"official charts"**. As a conclusion, all thses information are consistent with the top common words we derived in 6.4.2 and the corresponding documents we checked in 6.4.3. 
 
 # 7. Conclusion<a id="conclusion"></a>
 
-In the last iteration, we used bi-gram model to create the document-term matrix. The query term we used is *apple*, the date range is from *1 Mar 2017* to *8 Apr 2017*. The field we analyzed is `lead_paragraph`. The stopwords are *apple*, *said*, *inc* and *will*. The weighting option is *weightTf*. Since the bi-gram matrix normally generates fewer redundant terms than the uni gram matrix, we believe a model without stemming is worthy trying, thus we did not stem the words in this iteration.  
+In the last iteration, we used bi-gram model to create the document-term matrix. The query term we used is **"apple"**, the date range is from **1 Mar 2017** to **8 Apr 2017**. The field we analyzed is `lead_paragraph`. The stopwords are **"apple"**, **"said"**, **"inc"** and **"will"**. The weighting option is **weightTf**. Since the bi-gram matrix normally generates fewer redundant terms than the uni gram matrix, we believe a model without stemming is worthy trying, thus we did not stem the words in this iteration.  
 
 Based on the output from ```clValid``` function, the best cluster solution is hierarchical clustering with 5 clusters, with a high Silhouette Width value 0.7370. From the perspective of numeric evaluations, this cluster solution should have a good clustering performance.
 
-After checking the top common words and the original documents in each cluster, it is validated that the 5-cluster hierarchical clustering is a good cluster group: most documents in the cluster 1 belong to the same topic *news about Apple Inc*, the 8 documents in cluster 2 all belong to the topic *WikiLeaks*, the 11 documents in cluster 3 all belong to the topic *iTunes Movies and Music U.S. charts*, the 5 documents in cluster 4 all belong to the topic *iBook charts* and the 5 documents in cluster 5 all belong to the topic *App Store Official Chart*. 
+After checking the top common words and the original documents in each cluster, it is validated that the 5-cluster hierarchical clustering is a good cluster group: most documents in the cluster 1 belong to the same topic **news about Apple Inc**, the 8 documents in cluster 2 all belong to the topic **WikiLeaks**, the 11 documents in cluster 3 all belong to the topic **iTunes Movies and Music U.S. charts**, the 5 documents in cluster 4 all belong to the topic **iBook charts** and the 5 documents in cluster 5 all belong to the topic **App Store Official Chart**. 
 
 # 8. Future Studies<a id="8"></a>
 
 In addition to the frequent terms, clustering analysis demonstrated in this report, some other possible analysis on the text mining can be considered in the future studies. 
 
-Instead of using the data frame or matrix, we can convert all the documents to a *corpus*, a data format provided in package ```tm``` designed for a collection of text documents. After that, the corpus can be processed with functions provided in the package to deal with cleaning and preparing the data, stemming words, building term-document matrix as well as finding frequent terms and associations, etc. 
+Instead of using the data frame or matrix, we can convert all the documents to a **corpus**, a data format provided in package ```tm``` designed for a collection of text documents. After that, the corpus can be processed with functions provided in the package to deal with cleaning and preparing the data, stemming words, building term-document matrix as well as finding frequent terms and associations, etc. 
 
 We can use ```tokenizer``` function in ``` RWeka``` package to create the n-gram matrix, which can generate the multi-gram terms in a more readable manner. 
 

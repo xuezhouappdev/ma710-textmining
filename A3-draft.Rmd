@@ -440,7 +440,7 @@ view.cluster2(5)
 
 By checking the corresponding documents, the cluster 2 articles have a common topic: **iTunes Movies U.S. charts**; the cluster 3 articles have a common topic: **iTunes' Official Music Charts**, the cluster 4 articles have a common topic **App Store Official Charts**; the cluster 4 only has one article with the topic of **Today in History**. The common subjective retrieved from the original documents in these 4 clusters are consistent with the top common words we derived in the section 5.4.2. 
 
-However, we can not get much insights from the top common words in the cluster 1, as the words with high frequency in the 1st cluster are **"new"**, **"will"**, **"year"**, **"use"** and **"trump"**, but the 321 documents are mainly related to the topics like **the Apple products**, **polotics**, **market** and **technology**. 
+However, we can not get much insights from the top common words in the cluster 1, as the words with high frequency in the 1st cluster are **"new"**, **"will"**, **"year"**, **"use"** and **"trump"**, but the 321 documents are mainly related to the topics like **the Apple products**, **politics**, **market** and **technology**. 
 
 ## 5.5 Conclusion for this Iteration<a id="5.5"></a>  
 

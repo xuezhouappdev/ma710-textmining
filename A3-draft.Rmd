@@ -1,5 +1,5 @@
 ---
-title: "MA710 - New York Times Articles"
+title: "MA710 Assignment3 - Text Mining on New York Times Articles"
 author: "Xiang Li, Xue Zhou"
 date: "8 Apri 2017"
 output:
@@ -21,28 +21,28 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
     * 4.1 [Data Preparation: Parameters, Value and Reasons](#4.1)
     * 4.2 [Determine the Best Cluster Solution with Metrics:clValid](#4.2)
     * 4.3 [Cluster Generation](#4.3)
-    * 4.4 [Subjective Evaluation (terms and documents in each cluster)](#4.4)
+    * 4.4 [Subjective Evaluation](#4.4)
         * 4.4.1 [Cluster Counts](#4.4.1)
-        * 4.4.2 [Subjective Evaluation Common Words](#4.4.2)
-        * 4.4.3 [Subjective Evaluation: Evaluation: Check Documents](#4.4.3)
+        * 4.4.2 [Subjective Evaluation: Common Words](#4.4.2)
+        * 4.4.3 [Subjective Evaluation: Check Documents](#4.4.3)
      * 4.5 [Conclusion for This Iteration](#4.5)
 * 5 [Investigation -iteration 2](#investi1)
      * 5.1 [Data Preparation: Parameters, Value and Reasons](#5.1)
      * 5.2 [Determine the Best Cluster Solution with Metrics:clValid](#5.2)
      * 5.3 [Cluster Generation](#5.3)
-     * 5.4 [Subjective Evaluation (terms and documents in each cluster)](#5.4)
+     * 5.4 [Subjective Evaluation](#5.4)
         * 5.4.1 [Cluster Counts](#5.4.1)
-        * 5.4.2 [Subjective Evaluation Common Words](#5.4.2)
-        * 5.4.3 [Subjective Evaluation: Evaluation: Check Documents](#5.4.3)
+        * 5.4.2 [Subjective Evaluation: Common Words](#5.4.2)
+        * 5.4.3 [Subjective Evaluation: Check Documents](#5.4.3)
      * 5.5 [Conclusion for This Iteration](#5.5)
 * 6 [Investigation -iteration 3](#investi2)
      * 6.1 [Data Preparation: Parameters, Value and Reasons](#6.1)
      * 6.2 [Determine the Best Cluster Solution with Metrics:clValid](#6.2)
      * 6.3 [Cluster Generation](#6.3)
-     * 6.4 [Subjective Evaluation (terms and documents in each cluster)](#6.4)
+     * 6.4 [Subjective Evaluation](#6.4)
         * 6.4.1 [Cluster Counts](#6.4.1)
-        * 6.4.2 [Subjective Evaluation Common Words](#6.4.2)
-        * 6.4.3 [Subjective Evaluation: Evaluation: Check Documents](#6.4.3)
+        * 6.4.2 [Subjective Evaluation: Common Words](#6.4.2)
+        * 6.4.3 [Subjective Evaluation: Check Documents](#6.4.3)
      * 6.5 [Conclusion for This Iteration](#6.5)
 * 7 [Conclusion](#conclusion)
 * 8 [Future Studies](#8)    
@@ -109,7 +109,7 @@ There are 354 records in total, based on the defined parameters. We saved all th
 
 As all the records were saved in ```article.df.RData``` , we first loaded the data into R before we chose the field of interest. With the ```glimpse``` function, we are able to see the structure of the data frame. 
 
-```{r include=FALSE, warning=FALSE, message = FALSE}
+```{r }
 load(file="~/Desktop/ma710-textmining/article.df.RData")
 glimpse(article.df)
 docs = article.df$lead_paragraph 
@@ -263,7 +263,7 @@ plot(hclust.res)
 
 With the value of 6, the observations are clustered into 6 groups. Due to the large number of observations, it is hardly to directly get insights from the dendrogram. Then We evaluated the clustering results by analyzing the members, the common words and the original documents of each cluster.
 
-## 4.4 Subjective Evaluation (terms and documents in each cluster) 
+## 4.4 Subjective Evaluation<a id="4.4"></a>
 ### 4.4.1 Cluster Counts<a id="4.4.1"></a>  
 
 With the following code, we checked the cluster sizes for each cluster. 
@@ -274,7 +274,7 @@ as.data.frame(table(cluster))
 
 Based on the output, we can tell the frequencies of each cluster. 291 documents are clustered into cluster 1, 9 documents are clustered into the cluster 2, 20 documents are clustered into the cluster 3, 4 documents are clustered into cluster 4, 11 documents are clustered into cluster 5 and 3 documents are clustered into the cluster 6.
 
-### 4.4.2 Subjective Evaluation Common Words<a id="4.4.2"></a>  
+### 4.4.2 Subjective Evaluation: Common Words<a id="4.4.2"></a>  
 
 Then we used ```TopWords``` function to check the common words in each cluster.
   
@@ -293,7 +293,6 @@ However, it is hard to determine an obvious subject for each cluster based on th
 ## 4.5 Conclusion for this Iteration<a id="4.5"></a>  
 
 In this base investigation, though we did not find a optimum cluster solution, we noticed that some words with high frequency did not contain much useful information, such as **"said"** and **"inc"**, we would consider them as stopwords in the 2nd investigation. 
-
 # 5.Investigation -iteration 2<a id="investi1"></a>
 ## 5.1 Data Set Review: Parameters, Value and Reasons<a id="5.1"></a>    
 
@@ -396,7 +395,7 @@ cluster2 = cutree(hclust.res2,k)
 
 With the value of 5, the observations are clustered into 5 groups. Then We evaluated the clustering results by analyzing the members, the common words and the original documents of each cluster.
 
-## 5.4 Subjective Evaluation (terms and documents in each cluster) 
+## 5.4 Subjective Evaluation
 ### 5.4.1 Cluster Counts
 
 With the following code, we checked the cluster sizes for each cluster. 
@@ -407,7 +406,7 @@ as.data.frame(table(cluster2))
 
 Based on the output, we can tell the frequencies of each cluster. 321 documents are clustered into cluster 1, 5 documents are clustered into cluster 2, 6 documents are clustered into the cluster 3, 5 documents are clustered into the cluster 4 and 1 document is clustered into the cluster 5. 
 
-### 5.4.2 Subjective Evaluation Common Words<a id="5.4.2"></a>  
+### 5.4.2 Subjective Evaluation: Common Words<a id="5.4.2"></a>  
 
 Then we used ```TopWords``` function to check the common words in each cluster.
   
@@ -421,7 +420,7 @@ options(warn=0)
 
 The top 3 words in cluster 1 are **"new"**, **"compani"** and **"will"**; The top 3 words in cluster 2 are **"movi"**, **"itun"**, **"chart"**; The top 3 words in cluster 3 are **"itun"**, **"music"** and **"chart"**; The top 3 words in cluster 4 are **"store"**, **"app"** and **"chart"** and the top 3 words in cluster 5 are **"histori"**, **"app"** and **"chart"**. 
 
-### 5.4.3 Subjective Evaluation: Evaluation: Check Documents<a id="5.4.3"></a>  
+### 5.4.3 Subjective Evaluation: Check Documents<a id="5.4.3"></a>  
 
 Next, we checked the original documents in the 5 clusters to see if there are obvious common topics for each cluster. To differentiate the cluster results from the 1st round trail, we modified the ```view.cluster``` function as ```view.cluster2```. 
 
@@ -560,7 +559,7 @@ plot(hclust.res)
 
 With the value of 5, the observations are clustered into 5 groups. Due to the large number of observations, it is hardly to get insights from the dendrogram. Then We evaluated the clustering results by analyzing the members, the common words and the original documents of each cluster.
 
-## 6.4 Subjective Evaluation (terms and documents in each cluster) 
+## 6.4 Subjective Evaluation 
 ### 6.4.1 Cluster Counts<a id="6.4.1"></a>  
 
 With the following code, we checked the cluster sizes for each cluster. 
@@ -571,7 +570,7 @@ as.data.frame(table(cluster3))
 
 Based on the output, we can tell the frequencies of each cluster. 309 documents are clustered into cluster 1, 8 documents are clustered into cluster 2, 11 documents are clustered into the cluster 3, 5 documents are clustered into the cluster 4 and 5 document is clustered into the cluster 5. 
 
-### 6.4.2 Subjective Evaluation Common Words<a id="6.4.2"></a>  
+### 6.4.2 Subjective Evaluation: Common Words<a id="6.4.2"></a>  
 
 Then we used ```TopWords``` function to check the common words in each cluster.
   

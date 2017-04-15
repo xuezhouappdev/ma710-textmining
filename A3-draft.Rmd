@@ -52,7 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 Nowadays most of the information in business, industry government and other institutions is stored in text format. A document may contain largely unstructured text components. The goal of text mining is discover relevant information in text by transforming the text into data that can be used for further analysis. 
 
-In this analysis, we implemented text mining and cluster analysis on 338 articles from New York Times. We used the Article Search API provided by New York Times to retrieve the documents. To complete the code in a reasonable amount of time, we did not retrieve large amounts of articles from NY Times through the API. The search query we use is "**apple**".
+In this analysis, we implemented text mining and cluster analysis on the New York Times articles. We used the Article Search API provided by New York Times to retrieve the documents. To complete the code in a reasonable amount of time, we did not retrieve large amounts of articles from NY Times through the API, the total number of articles is 354. The search query we use is **"apple"**.
 
 Specifically, the goal of this research is to first analyze the term frequencies in this collection, and then conduct cluster analysis to segment the articles into groups based on the common topic. 
 
